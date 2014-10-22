@@ -1,0 +1,41 @@
+{
+	"name": "vizion",
+	"version": "0.0.0",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "author": {
+    "name": "Joni Shkurti",
+    "email": "jonishkurti90@gmail.com"
+  },
+  "keywords": [
+    "git",
+    "svn",
+    "hg",
+    "subversion",
+    "mercurial",
+    "repository",
+    "parser",
+    "versioning",
+    "revision"
+  ],
+	"description": "Git/Subversion/Mercurial repository metadata parser",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/keymetrics/vizion"
+  },
+	"main": "vizion.js",
+	"scripts": {
+		"test": "mocha -u tdd test/*"
+	},
+  "dependencies": {
+    "async": "*"
+  },
+	"devDependencies": {
+		"mocha": "*"
+	},
+  "bugs": {
+    "url": "https://github.com/keymetrics/vizion/issues"
+  },
+  "license": "MIT"
+}
