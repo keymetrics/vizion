@@ -1,5 +1,5 @@
 var assert = require("assert");
-var repo_parser = require("..");
+var vizion = require("..");
 
 /*
 	To enable a sample test suite, remove the _disabled
@@ -37,11 +37,11 @@ var sample = {
 	}
 };
 
-suite("repo_parser", function() {
+suite("vizion.analyze()", function() {
 	if(sample.git && sample.git.directory.length > 1) {
 		test("Pulling from Git", function(done) {
       this.timeout(5000);
-			repo_parser.analyze({folder: sample.git.directory}, function(err, metadata) {
+			vizion.analyze({folder: sample.git.directory}, function(err, metadata) {
 				assert.equal(err, null);
 				assert.equal(metadata.url, sample.git.url);
 				assert.equal(metadata.revision, sample.git.revision);
@@ -55,7 +55,7 @@ suite("repo_parser", function() {
 	if(sample.svn && sample.svn.directory.length > 1) {
 		test("Pulling from Subversion", function(done) {
       this.timeout(5000);
-			repo_parser.analyze({folder: sample.svn.directory}, function(err, metadata) {
+			vizion.analyze({folder: sample.svn.directory}, function(err, metadata) {
 				assert.equal(err, null);
 				assert.equal(metadata.url, sample.svn.url);
 				assert.equal(metadata.revision, sample.svn.revision);
@@ -69,7 +69,7 @@ suite("repo_parser", function() {
 	if(sample.hg && sample.hg.directory.length > 1) {
 		test("Pulling from Mercurial", function(done) {
       this.timeout(5000);
-			repo_parser.analyze({folder: sample.hg.directory}, function(err, metadata) {
+			vizion.analyze({folder: sample.hg.directory}, function(err, metadata) {
 				assert.equal(err, null);
 				assert.equal(metadata.url, sample.hg.url);
 				assert.equal(metadata.revision, sample.hg.revision);

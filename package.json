@@ -24,7 +24,7 @@
     "type": "git",
     "url": "https://github.com/keymetrics/vizion"
   },
-  "main": "vizion.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha -u tdd test/*"
   },
