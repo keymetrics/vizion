@@ -1,5 +1,5 @@
 var assert = require("assert");
-var repo_parser = require("./../parser.js");
+var repo_parser = require("..");
 
 /*
 	To enable a sample test suite, remove the _disabled
