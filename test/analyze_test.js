@@ -17,6 +17,8 @@ var sample = {
 		revision: "c67bdb927d59a58d835a572acb86b971603a8662",
 		comment: "dat commit though",
 		branch: "development",
+    next_rev: null,
+    prev_rev: '2e507d1b43e27eb17c09efa429146e962430092c',
 		update_time: "Tue, 21 Oct 2014 14:17:06 +0200"
 	},
 	svn: {
@@ -46,7 +48,9 @@ suite("vizion.analyze()", function() {
 				assert.equal(metadata.url, sample.git.url);
 				assert.equal(metadata.revision, sample.git.revision);
 				assert.equal(metadata.comment, sample.git.comment);
-				assert.equal(metadata.branch, sample.git.branch);
+				assert.equal(metadata.next_rev, sample.git.next_rev);
+        assert.equal(metadata.prev_rev, sample.git.prev_rev);
+        assert.equal(metadata.branch, sample.git.branch);
 				//assert.equal(metadata.update_time, sample.git.update_time);
 				done();
 			});

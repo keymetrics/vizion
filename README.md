@@ -43,8 +43,9 @@ if (err) throw new Error(err);
 /**
 *
 * meta = {
-*   is_up_to_date : false,
-*   new_revision  : 'ZZZZZzzzza3c969e4caba96546fd23255796'
+*   is_up_to_date    : false,
+*   new_revision     : 'ZZZZZzzzza3c969e4caba96546fd23255796',
+*   current_revision : 'f0a1d45936cf7a3c969e4caba96546fd23255796'
 * }
 *
 */
@@ -83,7 +84,6 @@ if (err) throw new Error(err);
 *
 * data = {
 *   success          : true,
-*   current_revision : 'f0a1d45936cf7a3c969e4caba96546fd23255796'
 * }
 *
 */
