@@ -39,9 +39,9 @@ var sample = {
 	}
 };
 
-suite("vizion.analyze()", function() {
+describe("vizion.analyze()", function() {
 	if(sample.git && sample.git.directory.length > 1) {
-		test("Pulling from Git", function(done) {
+		it("Should pull from Git", function(done) {
       this.timeout(5000);
 			vizion.analyze({folder: sample.git.directory}, function(err, metadata) {
 				assert.equal(err, null);
@@ -57,7 +57,7 @@ suite("vizion.analyze()", function() {
 		});
 	}
 	if(sample.svn && sample.svn.directory.length > 1) {
-		test("Pulling from Subversion", function(done) {
+		it("Pulling from Subversion", function(done) {
       this.timeout(5000);
 			vizion.analyze({folder: sample.svn.directory}, function(err, metadata) {
 				assert.equal(err, null);
@@ -71,7 +71,7 @@ suite("vizion.analyze()", function() {
 		});
 	}
 	if(sample.hg && sample.hg.directory.length > 1) {
-		test("Pulling from Mercurial", function(done) {
+		it("Pulling from Mercurial", function(done) {
       this.timeout(5000);
 			vizion.analyze({folder: sample.hg.directory}, function(err, metadata) {
 				assert.equal(err, null);
