@@ -43,6 +43,12 @@ describe('Git scenario', function() {
     }, function(err, meta) {
       should(err).not.exist;
 
+      meta.type.should.equal('git');
+      meta.branch.should.equal('master');
+      should.exist(meta.comment);
+      should.exist(meta.url);
+      should.exist(meta.revision);
+
       should(meta.next_rev).be.null;
       should(meta.prev_rev).not.be.null;
 

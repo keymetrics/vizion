@@ -26,7 +26,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/istanbul cover --report html node_modules/.bin/_mocha -- -R spec test/git_scenario.mocha.js"
+    "cover" : "node_modules/.bin/istanbul cover --report html node_modules/.bin/_mocha -- -R spec test/*",
+    "test": "node_modules/.bin/_mocha --require test/support/env --reporter spec --bail --check-leaks test/"
   },
   "dependencies": {
     "async": "0.9.0"
