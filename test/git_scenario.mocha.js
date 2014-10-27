@@ -80,7 +80,7 @@ describe('Git scenario', function() {
     });
   });
 
-  it('should see that its not on head', function(done) {
+  it('should see that its not on HEAD', function(done) {
     this.timeout(10000);
 
     vizion.isUpToDate({
