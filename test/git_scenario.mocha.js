@@ -12,7 +12,6 @@ describe('Git scenario', function() {
     this.timeout(10000);
     shell.cd('test/fixtures');
 
-
     if (shell.ls('angular-bridge').length == 0)
       shell.exec('git clone https://github.com/Unitech/angular-bridge.git');
 
@@ -27,10 +26,12 @@ describe('Git scenario', function() {
   });
 
   it('should update to latest', function(done) {
+    this.timeout(10000);
     vizion.update({
       folder : repo_pwd
-    }, function(err, met) {
+    }, function(err, meta) {
       should(err).not.exist;
+      should(meta.success).be.true;
       done();
     });
   });
@@ -77,7 +78,7 @@ describe('Git scenario', function() {
   });
 
   // Skip test - nothing shown
-  it.skip('should see that its not on head', function(done) {
+  it('should see that its not on head', function(done) {
     this.timeout(10000);
 
     vizion.isUpToDate({
@@ -87,8 +88,9 @@ describe('Git scenario', function() {
 
       should(err).not.exist;
       meta.is_up_to_date.should.be.false;
+
+      done();
     });
   });
-
 
 });
