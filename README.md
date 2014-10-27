@@ -88,4 +88,40 @@ if (err) throw new Error(err);
 *
 */
 });
+
+/**
+* If a previous commit exists it checkouts on it
+*/
+vizion.prev({
+folder : '/tmp/folder'
+}, function(err, meta) {
+if (err) throw new Error(err);
+
+/**
+*
+* meta = {
+*   success           : true,
+*   current_revision  : 'ZZZZZzzzza3c969e4caba96546fd23255796'
+* }
+*
+*/
+});
+
+/**
+* If a more recent commit exists it chekouts on it
+*/
+vizion.next({
+folder : '/tmp/folder'
+}, function(err, meta) {
+if (err) throw new Error(err);
+
+/**
+*
+* meta = {
+*   success           : false,
+*   current_revision  : 'sdsdsdzzzza3c969e4caba96546fd2325576'
+* }
+*
+*/
+});
 ```
