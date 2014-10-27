@@ -26,7 +26,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/"
+    "test": "node_modules/.bin/istanbul cover --report html node_modules/.bin/_mocha -- -R spec test/git_scenario.mocha.js"
   },
   "dependencies": {
     "async": "0.9.0"
@@ -34,7 +34,8 @@
   "devDependencies": {
     "mocha": "2.0.0",
     "should" : "*",
-    "shelljs" : "*"
+    "shelljs" : "*",
+    "istanbul" : "*"
   },
   "bugs": {
     "url": "https://github.com/keymetrics/vizion/issues"
