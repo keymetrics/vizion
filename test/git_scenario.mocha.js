@@ -37,6 +37,7 @@ describe('Git scenario', function() {
   });
 
   it('should analyze versioned folder', function(done) {
+    this.timeout(10000);
     vizion.analyze({
       folder: repo_pwd
     }, function(err, meta) {
@@ -52,6 +53,7 @@ describe('Git scenario', function() {
   });
 
   it('should checkout older version', function(done) {
+    this.timeout(10000);
     vizion.revertTo({
       folder     : repo_pwd,
       revision   : tmp_meta.prev_rev
@@ -63,6 +65,7 @@ describe('Git scenario', function() {
   });
 
   it('should has next and prev', function(done) {
+    this.timeout(10000);
     vizion.analyze({
       folder: repo_pwd
     }, function(err, meta) {
@@ -77,20 +80,58 @@ describe('Git scenario', function() {
     });
   });
 
-  // Skip test - nothing shown
   it('should see that its not on head', function(done) {
     this.timeout(10000);
 
     vizion.isUpToDate({
       folder : repo_pwd
     }, function(err, meta) {
-      if (err) throw new Error(err);
 
       should(err).not.exist;
       meta.is_up_to_date.should.be.false;
 
       done();
     });
+  });
+
+  it('should recursively downgrade to first commit', function(done) {
+    this.timeout(20000);
+    var callback = function(err, meta) {
+      should(err).not.exist;
+      should(meta).be.ok;
+      if (meta.success === true) {
+        vizion.prev({folder: repo_pwd}, callback);
+      }
+      else {
+        should(meta.success).be.false;
+        vizion.analyze({folder: repo_pwd}, function(err, meta) {
+          should(err).not.exist;
+          should(meta.prev_rev).be.null;
+          done();
+        });
+      }
+    }
+    vizion.prev({folder : repo_pwd}, callback);
+  });
+
+  it('should recursively upgrade to most recent commit', function(done) {
+    this.timeout(20000);
+    var callback = function(err, meta) {
+      should(err).not.exist;
+      should(meta).be.ok;
+      if (meta.success === true) {
+        vizion.next({folder: repo_pwd}, callback);
+      }
+      else {
+        should(meta.success).be.false;
+        vizion.analyze({folder: repo_pwd}, function(err, meta) {
+          should(err).not.exist;
+          should(meta.next_rev).be.null;
+          done();
+        });
+      }
+    }
+    vizion.next({folder : repo_pwd}, callback);
   });
 
 });
