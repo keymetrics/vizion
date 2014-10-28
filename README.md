@@ -24,8 +24,8 @@ vizion.analyze({
    *   type        : 'git',
    *   branch      : 'development',
    *   commment    : 'This is a comment',
-   *   update_time : 'DATE',
-   *   url         : 'http://an.url',
+   *   update_time : Tue Oct 28 2014 14:33:30 GMT+0100 (CET),
+   *   url         : 'https://github.com/keymetrics/vizion.git',
    *   revision    : 'f0a1d45936cf7a3c969e4caba96546fd23255796',
    *   next_rev    : null,  // null if its latest in the branch
    *   prev_rev    : 'aaaaasdaadas7a3c969e4caba96546fd23255796'
