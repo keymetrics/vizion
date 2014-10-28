@@ -1,6 +1,6 @@
 {
   "name": "vizion",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "engines": {
     "node": ">=0.10"
   },
@@ -41,5 +41,5 @@
   "bugs": {
     "url": "https://github.com/keymetrics/vizion/issues"
   },
-  "license": "MIT"
+  "license": "AGPLV3"
 }
