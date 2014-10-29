@@ -1,5 +1,6 @@
 
 var assert = require("assert");
+var shell  = require("shelljs");
 var vizion = require("..");
 
 /*
@@ -31,30 +32,30 @@ var sample = {
 };
 
 describe("vizion.analyze()", function() {
-	it.skip("Pulling from Subversion", function(done) {
-    this.timeout(5000);
-		vizion.analyze({folder: sample.svn.directory}, function(err, metadata) {
-			assert.equal(err, null);
-			assert.equal(metadata.url, sample.svn.url);
-			assert.equal(metadata.revision, sample.svn.revision);
-			assert.equal(metadata.comment, sample.svn.comment);
-			assert.equal(metadata.branch, sample.svn.branch);
-			//assert.equal(""+metadata.update_time, sample.svn.update_time);
-			done();
-		});
-	});
-
-	it.skip("Pulling from Mercurial", function(done) {
-    this.timeout(5000);
-		vizion.analyze({folder: sample.hg.directory}, function(err, metadata) {
-			assert.equal(err, null);
-			assert.equal(metadata.url, sample.hg.url);
-			assert.equal(metadata.revision, sample.hg.revision);
-			assert.equal(metadata.comment, sample.hg.comment);
-			assert.equal(metadata.branch, sample.hg.branch);
-			//assert.equal(""+metadata.update_time, sample.hg.update_time);
-			done();
-		});
-	});
-
+  if (shell.which('svn') !== null) {
+	  it("Pulling from Subversion", function(done) {
+      this.timeout(5000);
+		  vizion.analyze({folder: sample.svn.directory}, function(err, metadata) {
+			  assert.equal(err, null);
+			  assert.equal(metadata.url, sample.svn.url);
+			  assert.equal(metadata.revision, sample.svn.revision);
+			  assert.equal(metadata.comment, sample.svn.comment);
+			  assert.equal(metadata.branch, sample.svn.branch);
+			  done();
+		  });
+	  });
+  }
+  if (shell.which('hg') !== null) {
+	  it("Pulling from Mercurial", function(done) {
+      this.timeout(5000);
+		  vizion.analyze({folder: sample.hg.directory}, function(err, metadata) {
+			  assert.equal(err, null);
+			  assert.equal(metadata.url, sample.hg.url);
+			  assert.equal(metadata.revision, sample.hg.revision);
+			  assert.equal(metadata.comment, sample.hg.comment);
+			  assert.equal(metadata.branch, sample.hg.branch);
+			  done();
+		  });
+	  });
+  }
 });
