@@ -32,8 +32,8 @@ var sample = {
 };
 
 describe("vizion.analyze()", function() {
-  if (shell.which('svn') !== null) {
-	  it("Pulling from Subversion", function(done) {
+  if (shell.which('svn')) {
+	  it.skip("Pulling from Subversion", function(done) {
       this.timeout(5000);
 		  vizion.analyze({folder: sample.svn.directory}, function(err, metadata) {
 			  assert.equal(err, null);
@@ -45,7 +45,7 @@ describe("vizion.analyze()", function() {
 		  });
 	  });
   }
-  if (shell.which('hg') !== null) {
+  if (shell.which('hg')) {
 	  it("Pulling from Mercurial", function(done) {
       this.timeout(5000);
 		  vizion.analyze({folder: sample.hg.directory}, function(err, metadata) {
