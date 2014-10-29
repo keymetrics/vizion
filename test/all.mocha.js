@@ -14,7 +14,7 @@ var vizion = require("..");
  */
 var sample = {
 	svn: {
-		directory: "test/fixtures/test_svn/",
+		directory: "./test/fixtures/test_svn/",
 		url: "https://github.com/jshkurti/vizionar_test",
 		revision: "r3",
 		comment: "dat commit though",
@@ -22,7 +22,7 @@ var sample = {
 		update_time: "2014-10-21T12:29:21.289Z"
 	},
 	hg: {
-		directory: "test/fixtures/test_hg/",
+		directory: "./test/fixtures/test_hg/",
 		url: "https://jshkurti@bitbucket.org/jshkurti/vizionar_test",
 		revision: "0:a070c08854c3",
 		comment: "Initial commit with contributors",
