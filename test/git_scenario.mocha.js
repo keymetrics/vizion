@@ -31,7 +31,7 @@ if (shell.which('git') !== null) {
         folder : repo_pwd
       }, function(err, meta) {
         should(err).not.exist;
-        should(meta.success).be.true;
+        should(meta.success).be.false;
         done();
       });
     });
