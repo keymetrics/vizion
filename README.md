@@ -22,6 +22,7 @@ vizion.analyze({
    *
    * meta = {
    *   type        : 'git',
+   *   ahead       : false,
    *   branch      : 'development',
    *   commment    : 'This is a comment',
    *   update_time : Tue Oct 28 2014 14:33:30 GMT+0100 (CET),
