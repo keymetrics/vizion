@@ -21,7 +21,7 @@ if (shell.which('git') !== null) {
     });
 
     after(function(done) {
-      //shell.rm('-rf', 'angular-bridge');
+      shell.rm('-rf', 'angular-bridge');
       done();
     });
 
