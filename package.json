@@ -1,6 +1,6 @@
 {
   "name": "vizion",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "engines": {
     "node": ">=0.10"
   },
