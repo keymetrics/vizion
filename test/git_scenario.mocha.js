@@ -45,6 +45,8 @@ if (shell.which('git') !== null) {
 
         meta.type.should.equal('git');
         meta.branch.should.equal('master');
+
+        should(meta.branch_exists_on_remote).be.true
         should.exist(meta.comment);
         should.exist(meta.url);
         should.exist(meta.revision);
