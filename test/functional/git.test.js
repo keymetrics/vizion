@@ -5,7 +5,7 @@ var p = require('path');
 
 if (shell.which('git') === null) process.exit(0);
 
-describe('Git', function () {
+describe('Functional: Git', function () {
   var testRepoPath = '';
   var tmp_meta = {};
 
@@ -31,7 +31,7 @@ describe('Git', function () {
           expect(meta.type).to.eq('git');
           expect(meta.url).to.eq('https://github.com/Unitech/angular-bridge.git');
           expect(meta.branch).to.eq('master');
-          expect(meta.comment).to.eq('Merge pull request #17 from jorge-d/express_4');
+          expect(meta.comment).to.eq('Merge pull request #17 from jorge-d/express_4\n\nExpress 4');
           expect(meta.unstaged).to.eq(false);
           expect(meta.branch).to.eq('master');
           expect(meta.remotes).to.deep.eq(['origin']);
@@ -91,7 +91,7 @@ describe('Git', function () {
 
           expect(meta.type).to.eq('git');
           expect(meta.branch).to.eq('master');
-          expect(meta.comment).to.eq('Use expres 4 router correctly');
+          expect(meta.comment).to.eq('Use expres 4 router correctly\n');
           expect(meta.unstaged).to.eq(false);
           expect(meta.branch).to.eq('master');
           expect(meta.remotes).to.deep.eq(['origin']);
