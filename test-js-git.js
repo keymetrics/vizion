@@ -10,7 +10,11 @@ require('js-git/mixins/walkers')(repo);
 // Look up the hash that master currently points to.
 // HEAD for local head
 // refs/remotes/origin/HEAD for remote head
-repo.readRef("HEAD", function (err, commitHash) {
+
+// refs/heads/my-branch for local branch
+// refs/remotes/origin/my-branch for remote branch
+
+repo.readRef("refs/heads/second-branch", function (err, commitHash) {
   if (err) {
     return console.log(err);
   }

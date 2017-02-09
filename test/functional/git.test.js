@@ -70,7 +70,7 @@ describe('Functional: Git', function () {
     before(function beforeTest(done) {
       vizion.revertTo({
         folder: testRepoPath,
-        revision: '31edbe84c6d60092ffca007d699f1ed2f4a4fcf0'
+        revision: 'eb488c1ca9024b6da2d65ef34dc1544244d8c714'
       }, function (err, meta) {
         if (err) {
           return done(err);
@@ -91,15 +91,15 @@ describe('Functional: Git', function () {
 
           expect(meta.type).to.eq('git');
           expect(meta.branch).to.eq('master');
-          expect(meta.comment).to.eq('Use expres 4 router correctly\n');
+          expect(meta.comment).to.eq('Fix indentation\n');
           expect(meta.unstaged).to.eq(false);
           expect(meta.branch).to.eq('master');
           expect(meta.remotes).to.deep.eq(['origin']);
           expect(meta.remote).to.eq('origin');
           expect(meta.branch_exists_on_remote).to.eq(true);
           expect(meta.ahead).to.eq(false);
-          expect(meta.next_rev).to.eq('da29de44b4884c595468b6978fb19f17bee76893');
-          expect(meta.prev_rev).to.eq('82ce6b2c75ee1c5d98b2d0def278c7d988281bc2');
+          expect(meta.next_rev).to.eq('759120ab5b19953886424b7c847879cf7f4cb28e');
+          expect(meta.prev_rev).to.eq('0c0cb178a3de0b8c69a81d1fd2f0d72fe0f23a11');
           expect(meta.tags).to.deep.eq(['v0.3.4']);
 
           done();
