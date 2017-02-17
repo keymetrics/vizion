@@ -198,6 +198,7 @@ describe('Functional: Git', function () {
 
   after(function () {
     shell.rm('-rf', 'angular-bridge');
+    shell.cd('../..'); // go back to root
   });
 
 
