@@ -1,0 +1,5 @@
+--timeout 20000
+--reporter spec
+--bail
+--check-leaks
+test/**/*.test.js

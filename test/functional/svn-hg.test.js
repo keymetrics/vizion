@@ -1,7 +1,7 @@
 
 var assert = require("assert");
 var shell  = require("shelljs");
-var vizion = require("..");
+var vizion = require("../../index.js");
 
 /*
  To enable a sample test suite, remove the _disabled
