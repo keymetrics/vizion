@@ -1,12 +1,12 @@
 {
   "name": "vizion",
-  "version": "0.2.13",
+  "version": "1.0.0-beta1",
   "engines": {
     "node": ">=0.10"
   },
   "author": {
-    "name": "Joni Shkurti",
-    "email": "jonishkurti90@gmail.com"
+    "name": "Keymetrics",
+    "email": "contact@keymetrics.io"
   },
   "keywords": [
     "git",
