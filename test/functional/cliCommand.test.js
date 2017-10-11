@@ -1,31 +1,21 @@
 var expect = require('chai').expect;
-var fs = require('fs');
-var sinon = require('sinon');
-var ini = require('ini');
-
 var cliCommand = require("../../lib/cliCommand.js");
 
-describe('Unit: cliCommand', function () {
+describe('Functional: cliCommand', function () {
 
-    describe("getPlatform", function () {
+    var folderWindows = "C:\\Program Files\\nodejs\\foobar";
+    var folderUnix = "/etc/node/foobar";
 
-        var tmp = process.platform;
+    it("ok", function () {
+        var target;
 
-        before(function () {
-            process.platform = "win32";
-        });
+        if (/^win/.exec(process.platform))
+            target = "cd \"" + folderWindows + "\" && git status -s";
+        else
+            target = "cd '" + folderUnix + "';LC_ALL=en_US.UTF-8 git status -s";
 
-        it("recognizes win32/64 systems", function () {
-            var r1 =
-        });
-
-        after(function () {
-            process.platform = tmp;
-        });
-
-        it("decides on Unix for all other systems", function () {
-
-        });
+        var result = cliCommand(folderWindows, "git status -s");
+        expect(target).to.eq(result);
     });
 
 });
