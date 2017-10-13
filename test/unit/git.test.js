@@ -17,7 +17,10 @@ describe('Unit: git', function () {
 
     before(function beforeTest() {
       readFileStub = sinon.stub(fs, 'readFile', function (path, encoding, cb) {
-        expect(path).to.eq('my-folder/.git/config');
+        if (process.platform !== 'win32' && process.platform !== 'win64')
+          expect(path).to.eq('my-folder/.git/config');
+        else
+          expect(path).to.eq('my-folder\\.git\\config');
 
         cb(null, data);
       });
@@ -126,7 +129,10 @@ describe('Unit: git', function () {
 
     before(function beforeTest() {
       readFileStub = sinon.stub(fs, 'readFile', function (path, encoding, cb) {
-        expect(path).to.eq('my-folder/.git/HEAD');
+        if (process.platform !== 'win32' && process.platform !== 'win64')
+            expect(path).to.eq('my-folder/.git/HEAD');
+        else
+            expect(path).to.eq('my-folder\\.git\\HEAD');
         expect(encoding).to.eq('utf-8');
 
         cb(null, "ref: refs/heads/master");
