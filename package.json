@@ -27,7 +27,7 @@
   "main": "index.js",
   "scripts": {
     "cover": "node_modules/.bin/istanbul cover --report html node_modules/.bin/_mocha -- -R spec test/*",
-    "test": "node_modules/.bin/_mocha --require test/support/env test/"
+    "test": "mocha"
   },
   "dependencies": {
     "async": "2.6.1",
