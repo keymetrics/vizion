@@ -15,7 +15,7 @@ describe('Functional: Git', function () {
     shell.rm('-rf', 'angular-bridge');
     shell.exec('git clone https://github.com/Unitech/angular-bridge.git');
 
-    testRepoPath = p.join(shell.pwd(), 'angular-bridge');
+    testRepoPath = p.join(shell.pwd().toString(), 'angular-bridge');
   });
 
 
