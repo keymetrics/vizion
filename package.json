@@ -26,7 +26,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "cover": "node_modules/.bin/istanbul cover --report html node_modules/.bin/_mocha -- -R spec test/*",
+    "cover": "nyc --reporter=html npm test",
     "test": "mocha"
   },
   "dependencies": {
@@ -40,12 +40,12 @@
     "lodash.last": "^3.0.0"
   },
   "devDependencies": {
+    "chai": "4.1.2",
     "mocha": "5.2.0",
-    "should": "13.2.1",
+    "nyc": "12.0.2",
     "shelljs": "0.6.0",
-    "istanbul": "0.4.5",
-    "sinon": "6.1.3",
-    "chai": "4.1.2"
+    "should": "13.2.1",
+    "sinon": "6.1.3"
   },
   "bugs": {
     "url": "https://github.com/keymetrics/vizion/issues"
