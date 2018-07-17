@@ -16,7 +16,7 @@ describe('Unit: git', function () {
     var readFileStub, parseStub;
 
     before(function beforeTest() {
-      readFileStub = sinon.stub(fs, 'readFile', function (path, encoding, cb) {
+      readFileStub = sinon.stub(fs, 'readFile').callsFake(function (path, encoding, cb) {
         if (process.platform !== 'win32' && process.platform !== 'win64')
           expect(path).to.eq('my-folder/.git/config');
         else
@@ -25,7 +25,7 @@ describe('Unit: git', function () {
         cb(null, data);
       });
 
-      parseStub = sinon.stub(ini, 'parse', function (myData) {
+      parseStub = sinon.stub(ini, 'parse').callsFake(function (myData) {
         expect(myData).to.eq(data);
 
         return config;
@@ -59,7 +59,7 @@ describe('Unit: git', function () {
     var parseGitConfigStub;
 
     before(function beforeTest() {
-      parseGitConfigStub = sinon.stub(git, 'parseGitConfig', function (myFolder, cb) {
+      parseGitConfigStub = sinon.stub(git, 'parseGitConfig').callsFake(function (myFolder, cb) {
         expect(myFolder).to.eq(folder);
 
         cb(null, config);
@@ -96,7 +96,7 @@ describe('Unit: git', function () {
     var getHeadCommitStub;
 
     before(function beforeTest() {
-      getHeadCommitStub = sinon.stub(jsGitService, 'getHeadCommit', function (myFolder, cb) {
+      getHeadCommitStub = sinon.stub(jsGitService, 'getHeadCommit').callsFake(function (myFolder, cb) {
         expect(myFolder).to.eq(folder);
 
         cb(null, commit);
@@ -128,7 +128,7 @@ describe('Unit: git', function () {
     var readFileStub;
 
     before(function beforeTest() {
-      readFileStub = sinon.stub(fs, 'readFile', function (path, encoding, cb) {
+      readFileStub = sinon.stub(fs, 'readFile').callsFake(function (path, encoding, cb) {
         if (process.platform !== 'win32' && process.platform !== 'win64')
             expect(path).to.eq('my-folder/.git/HEAD');
         else
@@ -171,7 +171,7 @@ describe('Unit: git', function () {
     var parseGitConfigStub;
 
     before(function beforeTest() {
-      parseGitConfigStub = sinon.stub(git, 'parseGitConfig', function (myFolder, cb) {
+      parseGitConfigStub = sinon.stub(git, 'parseGitConfig').callsFake(function (myFolder, cb) {
         expect(myFolder).to.eq(folder);
 
         cb(null, config);
@@ -211,7 +211,7 @@ describe('Unit: git', function () {
 
     context('not on remote', function () {
       before(function beforeTest() {
-        getRefHashStub = sinon.stub(jsGitService, 'getRefHash', function (myFolder,myBranch,myRemote, cb) {
+        getRefHashStub = sinon.stub(jsGitService, 'getRefHash').callsFake(function (myFolder,myBranch,myRemote, cb) {
           expect(myFolder).to.eq(folder);
           expect(myBranch).to.eq(data.branch);
           expect(myRemote).to.eq(data.remote);
@@ -242,7 +242,7 @@ describe('Unit: git', function () {
 
     context('on remote', function () {
       before(function beforeTest() {
-        getRefHashStub = sinon.stub(jsGitService, 'getRefHash', function (myFolder,myBranch,myRemote, cb) {
+        getRefHashStub = sinon.stub(jsGitService, 'getRefHash').callsFake(function (myFolder,myBranch,myRemote, cb) {
           expect(myFolder).to.eq(folder);
           expect(myBranch).to.eq(data.branch);
           expect(myRemote).to.eq(data.remote);
@@ -289,7 +289,7 @@ describe('Unit: git', function () {
     var getCommitHistoryStub;
 
     before(function beforeTest() {
-      getCommitHistoryStub = sinon.stub(jsGitService, 'getCommitHistory', function (myFolder, n, myBranch, myRemote, cb) {
+      getCommitHistoryStub = sinon.stub(jsGitService, 'getCommitHistory').callsFake(function (myFolder, n, myBranch, myRemote, cb) {
         expect(myFolder).to.eq(folder);
         expect(n).to.eq(100);
         expect(myBranch).to.eq(data.branch);
