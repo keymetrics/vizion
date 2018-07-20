@@ -1,4 +1,14 @@
 
+## 2.0.2 ( Fri Jul 20 2018 10:26:40 GMT+0200 (CEST) )
+
+
+## Pull requests merged
+  - Merge pull request #21 from medanat/master
+  ([f9150b5f](https://github.com/keymetrics/vizion/commit/f9150b5fd38b1d65254b6416f9e7b70966592d68))
+
+
+
+
 ## 2.0.1 ( Mon Jul 09 2018 17:48:24 GMT+0200 (CEST) )
 
 
