@@ -2,4 +2,5 @@
 --reporter spec
 --bail
 --check-leaks
+--require test/support/env
 test/**/*.test.js
