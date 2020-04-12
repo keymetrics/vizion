@@ -114,7 +114,7 @@ vizion.prev({
 });
 
 /**
- * If a more recent commit exists it chekouts on it
+ * If a more recent commit exists it checkouts on it
  */
 vizion.next({
   folder : '/tmp/folder'
