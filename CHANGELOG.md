@@ -1,4 +1,11 @@
 
+## 2.1.0
+
+- Upgrade async
+- Upgrade ini
+- Merge PR security fix https://github.com/keymetrics/vizion/pull/27
+- Fixed bug in SVN parsing https://github.com/keymetrics/vizion/pull/23
+
 ## 2.0.2 ( Fri Jul 20 2018 10:26:40 GMT+0200 (CEST) )
 
 

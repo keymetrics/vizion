@@ -9,20 +9,77 @@ describe('Functional: Git', function () {
   var testRepoPath = '';
   var tmp_meta = {};
 
-  before(function () {
+  before(function (done) {
     shell.cd('test/fixtures');
 
     shell.rm('-rf', 'angular-bridge');
-    shell.exec('git clone https://github.com/Unitech/angular-bridge.git');
-
-    testRepoPath = p.join(shell.pwd().toString(), 'angular-bridge');
+    shell.exec('git clone https://github.com/Unitech/angular-bridge.git', () => {
+      testRepoPath = p.join(shell.pwd().toString(), 'angular-bridge');
+      done()
+    });
   });
 
+  after(function () {
+    shell.rm('-rf', 'angular-bridge');
+    shell.cd('../..'); // go back to root
+  });
 
-  context('at head', function () {
+  it('should recursively downgrade to first commit', function (done) {
+    var callback = function (err, meta) {
+      if (err) {
+        return done(err);
+      }
+
+      if (meta.success === true) {
+        vizion.prev({folder: testRepoPath}, callback);
+      }
+      else {
+        expect(meta.success).to.eq(false);
+        vizion.analyze({folder: testRepoPath}, function (err, meta) {
+          if (err) {
+            return done(err);
+          }
+
+          expect(meta.prev_rev).to.eq(null);
+          expect(meta.revision).to.eq('445c0b78e447e87eaec2140d32f67652108b434e');
+          done();
+        });
+      }
+    };
+
+    vizion.prev({folder: testRepoPath}, callback);
+  });
+
+  it('should recursively upgrade to most recent commit', function (done) {
+    var callback = function (err, meta) {
+      if (err) {
+        return done(err);
+      }
+
+      if (meta.success === true) {
+        vizion.next({folder: testRepoPath}, callback);
+      }
+      else {
+        expect(meta.success).to.eq(false);
+        vizion.analyze({folder: testRepoPath}, function (err, meta) {
+          if (err) {
+            return done(err);
+          }
+          expect(meta.next_rev).to.eq(null);
+          expect(meta.revision).to.eq('d1dee188a0d82f21c05a398704ac3237f5523ca7');
+          done();
+        });
+      }
+    };
+
+    vizion.next({folder: testRepoPath}, callback);
+  });
+
+  describe('at head', function () {
 
     describe('analyze', function () {
       it('ok', function (done) {
+        console.log('start')
         vizion.analyze({folder: testRepoPath}, function (err, meta) {
           if (err) {
             return done(err);
@@ -66,7 +123,7 @@ describe('Functional: Git', function () {
 
   });
 
-  context('previous commit', function () {
+  describe('previous commit', function () {
     before(function beforeTest(done) {
       vizion.revertTo({
         folder: testRepoPath,
@@ -144,61 +201,6 @@ describe('Functional: Git', function () {
         });
       });
     });
-  });
-
-  it('should recursively downgrade to first commit', function (done) {
-    var callback = function (err, meta) {
-      if (err) {
-        return done(err);
-      }
-
-      if (meta.success === true) {
-        vizion.prev({folder: testRepoPath}, callback);
-      }
-      else {
-        expect(meta.success).to.eq(false);
-        vizion.analyze({folder: testRepoPath}, function (err, meta) {
-          if (err) {
-            return done(err);
-          }
-
-          expect(meta.prev_rev).to.eq(null);
-          expect(meta.revision).to.eq('445c0b78e447e87eaec2140d32f67652108b434e');
-          done();
-        });
-      }
-    };
-    vizion.prev({folder: testRepoPath}, callback);
-  });
-
-  it('should recursively upgrade to most recent commit', function (done) {
-    var callback = function (err, meta) {
-      if (err) {
-        return done(err);
-      }
-
-      if (meta.success === true) {
-        vizion.next({folder: testRepoPath}, callback);
-      }
-      else {
-        expect(meta.success).to.eq(false);
-        vizion.analyze({folder: testRepoPath}, function (err, meta) {
-          if (err) {
-            return done(err);
-          }
-          expect(meta.next_rev).to.eq(null);
-          expect(meta.revision).to.eq('d1dee188a0d82f21c05a398704ac3237f5523ca7');
-          done();
-        });
-      }
-    };
-
-    vizion.next({folder: testRepoPath}, callback);
-  });
-
-  after(function () {
-    shell.rm('-rf', 'angular-bridge');
-    shell.cd('../..'); // go back to root
   });
 
 

@@ -1,6 +1,6 @@
 {
   "name": "vizion",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "engines": {
     "node": ">=4.0"
   },
@@ -30,9 +30,9 @@
     "test": "mocha"
   },
   "dependencies": {
-    "async": "2.6.1",
+    "async": "^2.6.3",
     "git-node-fs": "^1.0.0",
-    "ini": "^1.3.4",
+    "ini": "^1.3.5",
     "js-git": "^0.7.8",
     "lodash.findindex": "^4.6.0",
     "lodash.foreach": "^4.5.0",
