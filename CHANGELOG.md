@@ -1,4 +1,8 @@
 
+## 2.1.1
+
+- upgrade lodash
+
 ## 2.1.0
 
 - Upgrade async
