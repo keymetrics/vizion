@@ -1,4 +1,8 @@
 
+## 2.2.0
+
+- remove lodash
+
 ## 2.1.1
 
 - upgrade lodash
