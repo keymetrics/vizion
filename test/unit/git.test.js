@@ -3,8 +3,8 @@ var fs = require('fs');
 var sinon = require('sinon');
 var ini = require('ini');
 
-var git = require("../../lib/git/git.js");
-var jsGitService = require("../../lib/git/js-git-service.js");
+var git = require("../../lib/git/git");
+var jsGitService = require("../../lib/git/js-git-service");
 
 
 describe('Unit: git', function () {
@@ -25,22 +25,16 @@ describe('Unit: git', function () {
         cb(null, data);
       });
 
-      parseStub = sinon.stub(ini, 'parse').callsFake(function (myData) {
+      parseStub = sinon.stub(ini, 'parse').callsFake(async function (myData) {
         expect(myData).to.eq(data);
 
         return config;
       });
     });
 
-    it('ok', function it(done) {
-      git.parseGitConfig(folder, function (err, myConfig) {
-        if (err) {
-          return done(err);
-        }
-
-        expect(myConfig).to.eq(config);
-        done();
-      })
+    it('ok', async function it() {
+      const myConfig = await git.parseGitConfig(folder);
+      expect(myConfig).to.eq(config);
     });
 
     after(function afterTest() {
@@ -59,24 +53,17 @@ describe('Unit: git', function () {
     var parseGitConfigStub;
 
     before(function beforeTest() {
-      parseGitConfigStub = sinon.stub(git, 'parseGitConfig').callsFake(function (myFolder, cb) {
+      parseGitConfigStub = sinon.stub(git, 'parseGitConfig').callsFake(async function (myFolder) {
         expect(myFolder).to.eq(folder);
-
-        cb(null, config);
+        return config;
       });
     });
 
-    it('ok', function it(done) {
-      git.getUrl(folder, function (err, data) {
-        if (err) {
-          return done(err);
-        }
-
-        expect(data).to.deep.eq({
-          "type": "git",
-          "url": "test-url"
-        });
-        done();
+    it('ok', async function it() {
+      const data = await git.getUrl(folder);
+      expect(data).to.deep.eq({
+        "type": "git",
+        "url": "test-url"
       });
     });
 
@@ -103,17 +90,11 @@ describe('Unit: git', function () {
       });
     });
 
-    it('ok', function it(done) {
-      git.getCommitInfo(folder, data, function (err, data) {
-        if (err) {
-          return done(err);
-        }
-
-        expect(data).to.deep.eq({
-          "revision": commit.hash,
-          "comment": commit.message
-        });
-        done();
+    it('ok', async function it() {
+      data = await git.getCommitInfo(folder, data);
+      expect(data).to.deep.eq({
+        "revision": commit.hash,
+        "comment": commit.message
       });
     });
 
@@ -139,16 +120,10 @@ describe('Unit: git', function () {
       });
     });
 
-    it('ok', function it(done) {
-      git.getBranch(folder, data, function (err, data) {
-        if (err) {
-          return done(err);
-        }
-
-        expect(data).to.deep.eq({
-          "branch": "master",
-        });
-        done();
+    it('ok', async function it() {
+      data = await git.getBranch(folder, data);
+      expect(data).to.deep.eq({
+        "branch": "master",
       });
     });
 
@@ -171,27 +146,20 @@ describe('Unit: git', function () {
     var parseGitConfigStub;
 
     before(function beforeTest() {
-      parseGitConfigStub = sinon.stub(git, 'parseGitConfig').callsFake(function (myFolder, cb) {
+      parseGitConfigStub = sinon.stub(git, 'parseGitConfig').callsFake(async function (myFolder) {
         expect(myFolder).to.eq(folder);
-
-        cb(null, config);
+        return config;
       });
     });
 
-    it('ok', function it(done) {
-      git.getRemote(folder, data, function (err, data) {
-        if (err) {
-          return done(err);
-        }
-
-        expect(data).to.deep.eq({
-          "remote": "origin",
-          "remotes": [
-            "origin",
-            "other"
-          ]
-        });
-        done();
+    it('ok', async function it() {
+      data = await git.getRemote(folder, data);
+      expect(data).to.deep.eq({
+        "remote": "origin",
+        "remotes": [
+          "origin",
+          "other"
+        ]
       });
     });
 
@@ -220,18 +188,12 @@ describe('Unit: git', function () {
         });
       });
 
-      it('ok', function it(done) {
-        git.isCurrentBranchOnRemote(folder, data, function (err, data) {
-          if (err) {
-            return done(err);
-          }
-
-          expect(data).to.deep.eq({
-            "branch": "my-branch",
-            "branch_exists_on_remote": false,
-            "remote": "my-remote"
-          });
-          done();
+      it('ok', async function it() {
+        data = await git.isCurrentBranchOnRemote(folder, data);
+        expect(data).to.deep.eq({
+          "branch": "my-branch",
+          "branch_exists_on_remote": false,
+          "remote": "my-remote"
         });
       });
 
@@ -251,18 +213,12 @@ describe('Unit: git', function () {
         });
       });
 
-      it('ok', function it(done) {
-        git.isCurrentBranchOnRemote(folder, data, function (err, data) {
-          if (err) {
-            return done(err);
-          }
-
-          expect(data).to.deep.eq({
-            "branch": "my-branch",
-            "branch_exists_on_remote": true,
-            "remote": "my-remote"
-          });
-          done();
+      it('ok', async function it() {
+        data = await git.isCurrentBranchOnRemote(folder, data);
+        expect(data).to.deep.eq({
+          "branch": "my-branch",
+          "branch_exists_on_remote": true,
+          "remote": "my-remote"
         });
       });
 
@@ -299,22 +255,16 @@ describe('Unit: git', function () {
       });
     });
 
-    it('ok', function it(done) {
-      git.getPrevNext(folder, data, function (err, data) {
-        if (err) {
-          return done(err);
-        }
-
-        expect(data).to.deep.eq({
-          "ahead": false,
-          "branch": "my-branch",
-          "branch_exists_on_remote": true,
-          "next_rev": "3",
-          "prev_rev": "1",
-          "remote": "my-remote",
-          "revision": "2"
-        });
-        done();
+    it('ok', async function it() {
+      data = await git.getPrevNext(folder, data);
+      expect(data).to.deep.eq({
+        "ahead": false,
+        "branch": "my-branch",
+        "branch_exists_on_remote": true,
+        "next_rev": "3",
+        "prev_rev": "1",
+        "remote": "my-remote",
+        "revision": "2"
       });
     });
 
